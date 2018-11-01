@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">App Empresas</string>
+    <string name="usuario_senha_incorretos">Usuário e/ou senha inválidos</string>
+    <string name="pesquise_acima">Clique na busca para iniciar.</string>
+    <string name="bem_vindo">BEM-VINDO AO EMPRESAS</string>
+    <string name="loren">Lorem ipsum dolor sit amet, contetur adipiscing elit. Nunc accumsan.</string>
+    <string name="hint_email">E-mail</string>
+    <string name="hint_senha">Senha</string>
+    <string name="verificacaoEmail">^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$</string>
+    <string name="todo">TODO</string>
+    <string name="botao_entrar">Entrar</string>
+    <string name="empresa_titulo">Empresa1</string>
+    <string name="empresa_negocio">Negócio</string>
+    <string name="empresa_localizacao">Brasil</string>
+    <string name="pesquisar">Pesquisar</string>
+</resources>

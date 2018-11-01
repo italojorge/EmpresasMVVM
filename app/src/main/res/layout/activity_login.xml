@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.ioasys.empresasmvvm.viewmodel.LoginViewModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/corFundoApp"
+        tools:context=".view.Login.LoginActivity"
+        tools:layout_editor_absoluteY="25dp">
+
+
+        <Button
+            android:id="@+id/login_entrar_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/botaoarredondado"
+            android:onClick="@{()->vm.onLoginClicked()}"
+            android:text="@string/botao_entrar"
+            android:textColor="@android:color/background_light"
+            android:textSize="@dimen/tamanhoTexto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_senha_textInputLayout" />
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/login_senha_textInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="0dp"
+            app:errorText="@{vm.passwordError}"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_email_textInputLayout"
+            >
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/login_senha_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_cadeado"
+                android:ems="10"
+                android:hint="@string/hint_senha"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:text="@={vm.inputPassword}"
+                android:textSize="@dimen/tamanhoTexto"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/login_email_textInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_subtitulo_textView"
+            app:errorEnabled="true"
+            app:errorText="@{vm.emailError}"
+            >
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/login_email_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_email"
+                android:ems="10"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress"
+                android:text="@={vm.inputEmail}"
+                android:textSize="@dimen/tamanhoTexto" />
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/login_subtitulo_textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:letterSpacing="-0.01"
+            android:lineSpacingExtra="2.3sp"
+            android:text="@string/loren"
+            android:textColor="#383743"
+            android:textSize="@dimen/tamanhoTexto"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_titulo_textView" />
+
+        <TextView
+            android:id="@+id/login_titulo_textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:text="@string/bem_vindo"
+            android:textColor="#383743"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/login_logomarca_imageView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/login_logomarca_imageView"
+            app:layout_constraintTop_toBottomOf="@+id/login_logomarca_imageView" />
+
+        <ImageView
+            android:id="@+id/login_logomarca_imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="56dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="48dp"
+            android:contentDescription="@string/todo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo_home" />
+
+        <TextView
+            android:id="@+id/login_emailsenhainvalidos_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="88dp"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
