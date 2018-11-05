@@ -2,8 +2,8 @@ package com.ioasys.empresasmvvm.view.Seach;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -35,11 +35,13 @@ public class SearchActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.search_menu, menu);
 
-        SearchView mSearchView = (SearchView) menu.findItem(R.id.menu_seachView).getActionView();
-        mSearchView.setQueryHint("Pesquisar");
-        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        SearchView searchView = (SearchView) menu.findItem(R.id.menu_seachView).getActionView();
+        searchView.setQueryHint("Pesquisar");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                if (query != null)
+                    searchViewModel.searchEnterprises(query);
                 //mRecyclerView.setVisibility(View.VISIBLE);
                 //mPesquiseAcima.setVisibility(View.INVISIBLE);
                 //verificaEmpresaNoServidor(mClient, mUid, mAccess_token, query);

@@ -28,7 +28,6 @@ public class LoginActivity extends AppCompatActivity {
         binding.setVm(loginViewModel);
         binding.setLifecycleOwner(this);
 
-
         binding.getVm().viewState.observe(this, new Observer<ViewState>() {
             @Override
             public void onChanged(@Nullable ViewState viewState) {

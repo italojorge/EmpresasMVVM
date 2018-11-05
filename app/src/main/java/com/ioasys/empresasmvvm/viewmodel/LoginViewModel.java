@@ -1,15 +1,28 @@
 package com.ioasys.empresasmvvm.viewmodel;
 
+import android.annotation.SuppressLint;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.databinding.BindingAdapter;
 import android.support.design.widget.TextInputLayout;
+import android.util.Log;
 
 import com.ioasys.empresasmvvm.model.LoginModel.User;
+import com.ioasys.empresasmvvm.model.data.AuthRequest;
+import com.ioasys.empresasmvvm.model.remote.RemoteDataStore;
+import com.ioasys.empresasmvvm.model.remote.RemoteDataStoreImpl;
+
+import java.util.Objects;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Response;
 
 public class LoginViewModel extends ViewModel {
 
-    //private final String TAG = LoginViewModel.class.toString();
+    private final String TAG = LoginViewModel.class.toString();
+    private RemoteDataStore interactor = new RemoteDataStoreImpl();
 
     public MutableLiveData<ViewState> viewState = new MutableLiveData<>();
 
@@ -40,11 +53,10 @@ public class LoginViewModel extends ViewModel {
         view.setError(errorMessage);
     }
 
+    @SuppressLint("CheckResult")
     public void onLoginClicked() {
 
-//        getBusy().setValue(0); //View.VISIBLE
-
-        User user = new User(inputEmail.getValue(), inputPassword.getValue());
+ /*       User user = new User(inputEmail.getValue(), inputPassword.getValue());
 
         if (!user.isEmailValid()) {
             emailError.setValue("Digite um endereço de email válido");
@@ -60,11 +72,34 @@ public class LoginViewModel extends ViewModel {
 
         //Log.d(TAG, "Logado");
         if (user.isEmailValid() & user.isPasswordLengthGreaterThan5()) {
-            viewState.postValue(new ViewState("", "", ViewState.State.SUCCESS));
-        }
-        // userMutableLiveData.setValue(user);
-        //busy.setValue(8); //8 == View.GONE
+ */
+        interactor.login("testeapple@ioasys.com.br", "12341234")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<Response<AuthRequest>>() {
+                    @Override
+                    public void onNext(Response<AuthRequest> authRequestResponse) {
 
+                        if (authRequestResponse.isSuccessful()) {
+                            Log.d(TAG, "deu bom: "+authRequestResponse.body().getSuccess().toString());
+                        }else {
+                            Log.d(TAG, "Deu ruim");
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d(TAG, "Deu erro");
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+        //viewState.postValue(new ViewState("", "", ViewState.State.SUCCESS));
     }
+
+    //}
 
 }
