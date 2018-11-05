@@ -7,12 +7,15 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.ioasys.empresasmvvm.R;
 import com.ioasys.empresasmvvm.databinding.ActivityLoginBinding;
 import com.ioasys.empresasmvvm.view.Seach.SearchActivity;
 import com.ioasys.empresasmvvm.viewmodel.LoginViewModel;
 import com.ioasys.empresasmvvm.viewmodel.ViewState;
+
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -28,18 +31,22 @@ public class LoginActivity extends AppCompatActivity {
         binding.setVm(loginViewModel);
         binding.setLifecycleOwner(this);
 
-        binding.getVm().viewState.observe(this, new Observer<ViewState>() {
+        binding.getVm().getViewState().observe(this, new Observer<ViewState>() {
             @Override
             public void onChanged(@Nullable ViewState viewState) {
-                assert viewState != null;
-                switch (viewState.state) {
+                binding.progressBar.setVisibility(View.GONE);
+                binding.loginEmailsenhainvalidosTextView.setText("");
+                switch (Objects.requireNonNull(viewState).getState()) {
                     case LOADING:
+                        binding.progressBar.setVisibility(View.VISIBLE);
                         break;
                     case SUCCESS:
                         Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                         startActivity(intent);
+                        finish();
                         break;
                     case FAILURE:
+                        binding.loginEmailsenhainvalidosTextView.setText(viewState.getError().getMessage());
                         break;
                 }
             }

@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="30dp"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/botaoarredondado"
             android:onClick="@{()->vm.onLoginClicked()}"
             android:text="@string/botao_entrar"
@@ -42,14 +42,12 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="30dp"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="0dp"
-            app:errorText="@{vm.passwordError}"
             app:errorEnabled="true"
+            app:errorText="@{vm.passwordError}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_email_textInputLayout"
-            >
+            app:layout_constraintTop_toBottomOf="@+id/login_email_textInputLayout">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/login_senha_editText"
@@ -61,8 +59,7 @@
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:text="@={vm.inputPassword}"
-                android:textSize="@dimen/tamanhoTexto"
-                />
+                android:textSize="@dimen/tamanhoTexto" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -72,13 +69,12 @@
             android:layout_marginEnd="30dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="30dp"
+            app:errorEnabled="true"
+            app:errorText="@{vm.emailError}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_subtitulo_textView"
-            app:errorEnabled="true"
-            app:errorText="@{vm.emailError}"
-            >
+            app:layout_constraintTop_toBottomOf="@+id/login_subtitulo_textView">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/login_email_editText"
@@ -148,12 +144,22 @@
             android:id="@+id/login_emailsenhainvalidos_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="88dp"
+            android:layout_marginTop="16dp"
             android:textColor="@android:color/holo_red_dark"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_entrar_button" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/login_emailsenhainvalidos_textView" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

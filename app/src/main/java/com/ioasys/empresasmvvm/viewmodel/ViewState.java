@@ -1,5 +1,7 @@
 package com.ioasys.empresasmvvm.viewmodel;
 
+import android.support.annotation.NonNull;
+
 public class ViewState<T> {
     private T data;
     private Throwable error;
@@ -17,24 +19,23 @@ public class ViewState<T> {
         this.state = state;
     }
 
-    public ViewState<T> success(T data){
+    @NonNull
+    public static <U> ViewState success(U data){
         return new ViewState<>(data, null, Status.SUCCESS);
     }
 
-    public ViewState<T> error(Throwable error){
-        return new ViewState<>(null, error, Status.FAILURE);
+    @NonNull
+    public static ViewState error(Throwable error){
+        return new ViewState<>("", error, Status.FAILURE);
     }
 
-    public ViewState<T> loading(T data){
-        return new ViewState<>(null, null, Status.LOADING);
+    @NonNull
+    public static  ViewState loading(){
+        return new ViewState<>("", null, Status.LOADING);
     }
 
     public Throwable getError() {
         return error;
-    }
-
-    public void setError(Throwable error) {
-        this.error = error;
     }
 
     public T getData() {
@@ -47,9 +48,5 @@ public class ViewState<T> {
 
     public Status getState() {
         return state;
-    }
-
-    public void setState(Status state) {
-        this.state = state;
     }
 }
