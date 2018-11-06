@@ -1,5 +1,6 @@
 package com.ioasys.empresasmvvm.model.interactor;
 
+import com.ioasys.empresasmvvm.model.data.AuthRequest;
 import com.ioasys.empresasmvvm.model.data.Enterprise;
 import com.ioasys.empresasmvvm.model.data.HeaderApi;
 import com.ioasys.empresasmvvm.model.remote.RemoteDataStoreImpl;
@@ -13,7 +14,7 @@ public class EnterpriseInteractorImpl implements EnterpriseInteractor{
     private RemoteDataStoreImpl remoteDataStore= new RemoteDataStoreImpl();
 
     @Override
-    public Observable<Response> login(String email, String password) {
+    public Observable<Response<AuthRequest>> login(String email, String password) {
         return remoteDataStore.login(email,password);
     }
 

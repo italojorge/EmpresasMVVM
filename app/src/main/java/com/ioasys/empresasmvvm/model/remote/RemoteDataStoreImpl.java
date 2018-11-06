@@ -1,6 +1,7 @@
 package com.ioasys.empresasmvvm.model.remote;
 
 import com.ioasys.empresasmvvm.model.api.WebService;
+import com.ioasys.empresasmvvm.model.data.AuthRequest;
 import com.ioasys.empresasmvvm.model.data.Enterprise;
 import com.ioasys.empresasmvvm.model.data.HeaderApi;
 import com.ioasys.empresasmvvm.model.data.User;
@@ -20,7 +21,7 @@ public class RemoteDataStoreImpl implements RemoteDataStore {
     }
 
     @Override
-    public Observable<Response> login(String email, String password) {
+    public Observable<Response<AuthRequest>> login(String email, String password) {
         return webService.login(
                 new User(email,password)
         );

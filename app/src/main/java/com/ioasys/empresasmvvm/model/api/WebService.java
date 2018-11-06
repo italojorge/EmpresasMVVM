@@ -1,5 +1,6 @@
 package com.ioasys.empresasmvvm.model.api;
 
+import com.ioasys.empresasmvvm.model.data.AuthRequest;
 import com.ioasys.empresasmvvm.model.data.Enterprise;
 import com.ioasys.empresasmvvm.model.data.User;
 
@@ -16,7 +17,7 @@ import retrofit2.http.Query;
 
 public interface WebService {
     @POST(PATH_SIGN_IN)
-    Observable<Response> login(@Body User user);
+    Observable<Response<AuthRequest>> login(@Body User user);
 
     @GET(PATH_ENTERPRISES)
     Observable<List<Enterprise>> searchEnterprise(@Query(FIELD_NAME) String query, @HeaderMap HashMap<String, String> headers);

@@ -5,6 +5,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
 import com.ioasys.empresasmvvm.model.LoginModel.User;
+import com.ioasys.empresasmvvm.model.data.AuthRequest;
 import com.ioasys.empresasmvvm.model.interactor.EnterpriseInteractorImpl;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -57,7 +58,7 @@ public class LoginViewModel extends ViewModel {
         }
     }
 
-    private class LoginSubscriber extends DisposableObserver<Response> {
+    private class LoginSubscriber extends DisposableObserver<Response<AuthRequest>> {
         @Override
         public void onNext(Response response) {
 

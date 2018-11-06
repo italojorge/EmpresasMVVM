@@ -17,14 +17,12 @@ public class WebServiceFactory {
     private static WebService retrofit = null;
 
     private static WebService getClient(String url) {
-        if (retrofit==null){
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(url)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .build()
-                    .create(WebService.class);
-        }
+        if (retrofit==null) retrofit = new Retrofit.Builder()
+                .baseUrl(url)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build()
+                .create(WebService.class);
         return retrofit;
     }
 
